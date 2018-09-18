@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<p>Number of hits: <span id="numHits">0</span></p>
+
+<div>
+    <form action="HitCounter" method="GET">
+        <label for="removeCookie"><input type="checkbox" id="removeCookie" name="removeCookie" value="true"> Remove
+            cookie</label><br>
+        <input type="submit" value="Hit me!">
+    </form>
+</div>
+
+<script>
+
+    // This function was copy-pasted from: https://www.w3schools.com/js/js_cookies.asp
+    function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+    var span = document.getElementById("numHits");
+    var numHits = getCookie("hits");
+    //This is an alternative way of writing an if statement
+    //It means: if it is true there is a hits cookie
+    //set innerText ton numHits
+    //If it is not true, set it to 0
+    span.innerText = numHits ? numHits : "0";
+
+
+
+</script>
+
+</body>
+</html>

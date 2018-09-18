@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<p>Welcome FNAME LNAME from CITY, COUNTRY</p>
+<a href="index.html">HOME</a>
+
+<div>
+    <form>
+        <label for="cookiename">Cookie name: </label>
+        <input type="text" id="cookiename">
+        <button id="clickme">Get cookie value</button>
+    </form>
+</div>
+
+<p>Cookie name: <span id="typedname"></span></p>
+<p>Cookie value: <span id="value"></span></p>
+
+<script>
+
+    // This function was copy-pasted from: https://www.w3schools.com/js/js_cookies.asp
+    function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+    document.getElementById("clickme").onclick = function(event) {
+
+        event.preventDefault(); // Stop form submission
+
+        var cookieName = document.getElementById("cookiename").value;
+        document.getElementById("typedname").innerText = cookieName;
+
+        var cookieValue = getCookie(cookieName);
+        document.getElementById("value").innerText = cookieValue;
+
+    }
+</script>
+
+</body>
+</html>
